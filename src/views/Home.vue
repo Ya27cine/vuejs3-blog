@@ -5,6 +5,8 @@
 
     <h4>my name is {{ name }} - my age is {{ age }}</h4>
     <button @click="sayHello">Hello</button>
+        <button @click="age++">inc</button>
+
   </div>
 </template>
 
@@ -15,14 +17,15 @@ export default {
 
   setup() {
     // My data:
-    let name = "Khelifa"
-    let age = 28
+    let name = ref("Khelifa")
+    let age = ref(28)
     let title = ref(null);
     // Methods: 
     const sayHello = () => {
       console.log("Welcome in prostam")
       title.value.textContent = "Salem"
       title.value.classList.add("text-end")
+      name.value = "Sabah";
     }
 
     return{
