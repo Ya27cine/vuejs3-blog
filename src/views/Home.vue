@@ -14,10 +14,13 @@
          {{ course}}
     </div>
   </div>
+
+  <hr>
+  <button @click="handWatch">Stop Watch</button>
 </template>
 
 <script>
-import { reactive,computed, ref } from 'vue'
+import { reactive,computed, ref,  watchEffect, watch } from 'vue'
 export default {
     name: 'Home',
 
@@ -46,7 +49,16 @@ export default {
     const result  = computed( () => {
                   return courses.value.filter( course => course.includes(search.value) )
     });
-    
+
+
+    // watch
+    const stopWatch   = watch(search, () => console.log(' watch : '+search.value))
+    const stopWatchEff =  watchEffect( () => console.log(' watchEffect : '+search.value))
+
+     const handWatch = () => {
+        stopWatch();
+        stopWatchEff();
+    }
 
     return{
       name,
@@ -56,6 +68,7 @@ export default {
       socite,
       result,
       search,
+      handWatch
     }
   },
  
