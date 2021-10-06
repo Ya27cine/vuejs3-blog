@@ -8,17 +8,22 @@
     <h4>my name is {{ name }} - my age is {{ age }}</h4>
     <button @click="sayHello">Hello</button>
         <button @click="age++">inc</button>
-
+  <hr>
+    <input type="text" name="" v-model="search">
+    <div v-for="course in result">
+         {{ course}}
+    </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import { reactive,computed, ref } from 'vue'
 export default {
     name: 'Home',
 
   setup() {
     // My data:
+    const courses = ref(['Laravel', 'Symfony', 'ReactJS', 'VueJs', 'NodeJs', "JavaEE", 'Angular', "Flesk", 'CakePhp']);
     let name = ref("Khelifa")
     let age = ref(28)
     let title = ref(null);
@@ -36,12 +41,21 @@ export default {
       socite.name = "SASU PROSTAM"
     }
 
+        // computed 
+    const search = ref('');
+    const result  = computed( () => {
+                  return courses.value.filter( course => course.includes(search.value) )
+    });
+    
+
     return{
       name,
       age,
       title,
       sayHello,
-      socite
+      socite,
+      result,
+      search,
     }
   },
  
