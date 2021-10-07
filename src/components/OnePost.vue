@@ -10,7 +10,7 @@ export default {
     props: ['post'],
     setup(props) {
         
-        const extrait = computed( () => props.post.content.substring(0, 15)+ '...');
+        const extrait = computed( () => props.post.content.substring(0, 17)+ '...');
 
         return {
             extrait
