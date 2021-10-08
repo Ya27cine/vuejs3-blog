@@ -4,8 +4,43 @@
         <router-link to="/blog">Blog</router-link> |
     <router-link to="/about">About</router-link>
   </div>
+
+  <div>
+    <button @click="previous">Previos</button>
+    <button @click="next">Next</button>
+    <button @click="redirect">Redirect</button>
+  </div>
+
   <router-view/>
 </template>
+
+<script>
+
+import {useRouter } from 'vue-router'
+
+export default{
+    setup() {
+
+      const router = useRouter();
+
+      const previous = () => {
+         router.go(-1)
+      }
+      const next = () => {
+        router.go(1)
+      }
+      const redirect = () => {
+        router.push('/')
+      }
+
+      return{
+        previous, next, redirect
+      }
+    }
+}
+
+
+</script>
 
 <style>
 #app {
